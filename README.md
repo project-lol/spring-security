@@ -11,4 +11,16 @@
 - CSRF :
   - cross site request forgery 
   - 웹사이트 취약점 공격방지를 위해 사용하는 기술 
-  - 스프링 시큐리티가 CSRF 토큰 값을 세션을 통해 발행하고 웹 페이지에서는 폼 전송시에 해당 토큰을 함께 전송하여 실제 웹 페이지에서 작성된 데이터가 전달되는지를 검증하는 기술이다. 
+  - 스프링 시큐리티가 CSRF 토큰 값을 세션을 통해 발행하고 웹 페이지에서는 폼 전송시에 해당 토큰을 함께 전송하여 실제 웹 페이지에서 작성된 데이터가 전달되는지를 검증하는 기술이다.
+- BCryptPasswordEncoder : 
+  - BCrypt 해싱 함수를 사용해서 비밀번호를 암호화한다. 
+  - 직접 new 로 생성하는 방식보다는 빈으로 등록해서 사용하는 것이 좋다. 
+  - 만약 암호화방식을 변경하게 되면 BCryptePasswordEncoder를 사용한 모든 프로그램을 일일이 찾아서 수정해야하기 때문이다. 
+  - @Configuration이 적용된 SecurityConfig에 @Bean 메서드를 생성하는 것이다.
+
+```java
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+```
